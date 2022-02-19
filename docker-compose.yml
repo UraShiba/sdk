@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  database:
+    build: ./database
+    environment:
+      POSTGRES_USER: admin #superuser権限を持つ指定された名前のユーザーとデータベースを作成します
+      POSTGRES_PASSWORD: admin #PostgreSQLのsuper userパスワードを設定
+    volumes:
+      - ./database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./database/work:/usr/src
+    ports:
+      - "5433:5433" #外部からのアクセス時のポート:dockerコンテナからアクセスする時のポート
+    networks:
+      - my-network
+  server:
+    build: ./server
+    volumes:
+      - ./server/work:/usr/src
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+    tty: true
+networks:
+  my-network:
+    external: true
