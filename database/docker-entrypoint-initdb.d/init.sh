@@ -1,13 +1,11 @@
 set -e
 psql -U admin admin << EOSQL
-CREATE TABLE Users(
-  account_id        SERIAL PRIMARY KEY,
-  account_name      VARCHAR(20),
-  email             VARCHAR(100),
-  password    CHAR(64)
+CREATE TABLE user_info(
+  user_id int NOT NULL,
+  user_name text NOT NULL,
+  login_name text NOT NULL,
+  pass text NOT NULL,
+  CONSTRAINT pk_user PRIMARY KEY (user_id)
 );
 
-CREATE TABLE UserStatus(
-  status            VARCHAR(20) PRIMARY KEY
-);
 EOSQL
