@@ -14,7 +14,7 @@ services:
       - "5433:5433" #外部からのアクセス時のポート:dockerコンテナからアクセスする時のポート
     networks:
       my-network:
-        ipv4_address: 172.21.0.3
+        ipv4_address: 172.21.238.3
   server:
     build: ./server
     volumes:
@@ -23,8 +23,11 @@ services:
       - "8080:8080"
     networks:
       my-network:
-        ipv4_address: 172.21.0.4
+        ipv4_address: 172.21.238.2
     tty: true
 networks:
   my-network:
-    external: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.238.0/24
