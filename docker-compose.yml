@@ -9,18 +9,21 @@ services:
     volumes:
       - ./database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./database/work:/usr/src
+      - ./database/db:/var/lib/postgresql/data
     ports:
       - "5433:5433" #外部からのアクセス時のポート:dockerコンテナからアクセスする時のポート
     networks:
-      - my-network
+      my-network:
+        ipv4_address: 172.21.0.3
   server:
     build: ./server
     volumes:
-      - ./server/work:/usr/src
+      - ./server/work:/home/developer/work:rw
     ports:
       - "8080:8080"
     networks:
-      - my-network
+      my-network:
+        ipv4_address: 172.21.0.4
     tty: true
 networks:
   my-network:
