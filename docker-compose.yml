@@ -20,7 +20,7 @@ services:
     volumes:
       - ./server/work:/home/developer/work:rw
     ports:
-      - "8080:8080"
+      - "5050:5050"
     networks:
       my-network:
         ipv4_address: 172.21.238.2

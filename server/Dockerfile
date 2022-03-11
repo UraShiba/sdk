@@ -25,4 +25,5 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
 RUN $HOME/.cargo/bin/cargo install diesel_cli --no-default-features --features postgres
 RUN mkdir -p $HOME/work
 USER root
+EXPOSE 5050
 WORKDIR $HOME
