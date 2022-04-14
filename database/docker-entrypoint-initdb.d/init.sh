@@ -9,3 +9,15 @@ CREATE TABLE user_info(
 );
 
 EOSQL
+
+psql -U admin admin << EOSQL
+CREATE TABLE chat_message
+(
+message_id int NOT NULL primary key,
+from_user_id int NOT NULL references user_info(user_id),
+to_user_id int NOT NULL references user_info(user_id),
+message_text NOT NULL text,
+sent_datetime NOT NULL text
+);
+
+EOSQL
