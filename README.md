@@ -9,6 +9,7 @@
 In container
 * echo DATABASE_URL=postgres://admin:admin@172.21.238.3/admin > .env
 * diesel setup
+* diesel migration run (If you want to migrate again, you should use diesel migration redo)
 * diesel print-schema > src/schema.rs
 
 ## Settings
